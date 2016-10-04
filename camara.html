@@ -1,8 +1,8 @@
-
 <html>
 <body>
 	<video id="v" width="300" height="300"></video>
-	<input id="b" type="button" disabled="true" value="Take Picture"></input>
+	<input type="file" accept="image/*" capture="camera">
+	<input id="b" type="button" disabled="false" value="Take Picture"></input>
 	<canvas id="c" style="display:none;" width="300" height="300"></canvas>
 </body>
 <script>
