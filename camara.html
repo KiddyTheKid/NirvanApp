@@ -1,22 +1,24 @@
 <html>
 <body>
-	<video id="v" width="300" height="300"></video>
-	<input type="file" accept="image/*" capture="camera">
-	<input id="b" type="button" disabled="false" value="Take Picture"></input>
-	<canvas id="c" style="display:none;" width="300" height="300"></canvas>
+	<button id="fotop">Foto!</button>
+	<img id="imagen">
 </body>
 <script>
-	navigator.getUserMedia({video: true}, function(stream) {
-		var video = document.getElementById("v");
-		var canvas = document.getElementById("c");
-		var button = document.getElementById("b");
-		video.src = stream;
-		button.disabled = false;
-		button.onclick = function() {
-			canvas.getContext("2d").drawImage(video, 0, 0, 300, 300, 0, 0, 300, 300);
-			var img = canvas.toDataURL("image/png");
-			alert("done");
-		};
-	}, function(err) { alert("there was an error " + err)});
+       $(function(){
+	       function CamSuccess(imgData){
+		       $("#imagen").attr("src",imgData);
+	       }
+	       function CamError(error){
+		       alter(error);
+	       }
+	       function accessCamera(){
+		       var options = {
+			       destinationType: Camera.DestinationType.FILE_URI,
+			       sourceType: camera.PictureSourceType.CAMERA,
+		       };
+		       navigator.camera.getPicture(CamSuccess, CamError, options);
+	       }
+	       $("#fotop")on.("Click",accessCamera);
+       });
 </script>
 </html>
