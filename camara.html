@@ -50,6 +50,20 @@
       // The inline CSS rules are used to resize the image
       //
       largeImage.src = imageURI;
+      
+      ///Prueba de mierda
+      window.cordova.plugins.imagesaver.saveImageToGallery(nativePathToJpegImage, onSaveImageSuccess, onSaveImageError);
+                                            
+      function onSaveImageSuccess() {
+       console.log('--------------success');
+      }
+                                            
+      function onSaveImageError(error) {
+    console.log('--------------error: ' + error);
+      }
+      
+      
+      
     }
     // A button will call this function
     //
