@@ -17,7 +17,6 @@
     function onDeviceReady() {
         pictureSource=navigator.camera.PictureSourceType;
         destinationType=navigator.camera.DestinationType;
-        );
     }
     // Called when a photo is successfully retrieved
     //
@@ -25,6 +24,7 @@
       // Uncomment to view the base64 encoded image data  
       var foto = document.getElementById('foto');
       foto.src = imageData;
+      cordova.base64ToGallery(foto);
     }
     function onPhotoURISuccess(imageURI) {
       // Uncomment to view the image file URI 
