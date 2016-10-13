@@ -22,22 +22,7 @@
     //
     function onPhotoDataSuccess(imageData){
       // Uncomment to view the base64 encoded image data  
-      var foto = document.getElementById('foto');
-      foto.src = imageData;
-      cordova.base64ToGallery(foto,
-                              {
-            prefix: 'img_'+foto+'.jpeg',
-            mediaScanner: true
-        },
- 
-        function(path) {
-            console.log(path);
-        },
- 
-        function(err) {
-            console.error(err);
-        }
-      );
+      cordova.base64ToGallery(imageData,'img_');
     }
     function onPhotoURISuccess(imageURI) {
       // Uncomment to view the image file URI 
@@ -87,9 +72,6 @@
   </head>
   <body>
     <button onclick="capturePhoto();">Capture Photo</button> <br>
-    <button onclick="capturePhotoEdit();">Capture Editable Photo</button> <br>
-    <button onclick="getPhoto(navigator.camera.PictureSourceType.PHOTOLIBRARY);">From Photo Library</button><br>
-    <button onclick="getPhoto(navigator.camera.PictureSourceType.SAVEDPHOTOALBUM);">From Photo Album</button><br>
     <img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
     <img style="display:none;" id="largeImage" src="" />
   </body>
