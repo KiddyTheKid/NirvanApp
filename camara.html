@@ -27,16 +27,6 @@
       // Get image handle
       //
       var smallImage = document.getElementById('smallImage');
-      var nativePathToJpegImage = 'file:///data/data/<package_name>/files/some_dir/some_image.jpg'
-      window.cordova.plugins.imagesaver.saveImageToGallery(nativePathToJpegImage, onSaveImageSuccess, onSaveImageError);
-                                            
-      function onSaveImageSuccess() {
-       console.log('--------------success');
-      }
-                                            
-      function onSaveImageError(error) {
-      console.log('--------------error: ' + error);
-      }
       // Unhide image elements
       //
       smallImage.style.display = 'block';
@@ -72,7 +62,7 @@
     function capturePhoto() {
       // Take picture using device camera and retrieve image as base64-encoded string
       navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50,
-        destinationType: navigator.camera.DestinationType.FILE_URI });
+        destinationType: navigator.camera.DestinationType.DATA_URL });
     }
     // A button will call this function
     //
