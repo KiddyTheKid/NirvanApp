@@ -21,11 +21,20 @@
     }
     // Called when a photo is successfully retrieved
     //
-    function onPhotoDataSuccess(imageURI) {
+    function onPhotoDataSuccess(imageURI)
       // Uncomment to view the base64 encoded image data
       // console.log(imageData);
       // Get image handle
       //
+      var imagencarga = imageURI;
+      var nativePathToJpegImage = 'file:///data/data/NirvanApp/files/images/'+imageData;
+      window.cordova.plugins.imagesaver.saveImageToGallery(nativePathToJpegImage, onSaveImageSuccess, onSaveImageError);
+      function onSaveImageSuccess() {
+        console.log('--------------success');
+      }
+      function onSaveImageError(error) {
+        console.log('--------------error: ' + error);
+      }
       var smallImage = document.getElementById('smallImage');
       // Unhide image elements
       //
