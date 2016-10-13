@@ -25,25 +25,51 @@
       // Uncomment to view the base64 encoded image data
       // console.log(imageData);
       // Get image handle
-      //
-      var imagencarga = imageURI;
-      var nativePathToJpegImage = 'file:///data/data/NirvanApp/files/images/'+imageData;
-      window.cordova.plugins.imagesaver.saveImageToGallery(nativePathToJpegImage, onSaveImageSuccess, onSaveImageError);
-      function onSaveImageSuccess() {
-        console.log('--------------success');
-      }
-      function onSaveImageError(error) {
-        console.log('--------------error: ' + error);
-      }
-      var smallImage = document.getElementById('smallImage');
+      //      
+      sessionStorage.removeItem('imagepath');
+      var imgProfile = document.getElementById('imgProfile');
       // Unhide image elements
-      //
-      smallImage.style.display = 'block';
       // Show the captured photo
       // The inline CSS rules are used to resize the image
       //
-      smallImage.src = imageURI;
+      imgProfile.src = imageURI;
+      if(sessionStorage.isprofileimage==1){
+            getLocation();
+        }
+        movePic(imageURI);
     }
+    
+    function movePic(file){ 
+      window.resolveLocalFileSystemURI(file, resolveOnSuccess, resOnError); 
+    } 
+    function resolveOnSuccess(entry){ 
+      var d = new Date();
+      var n = d.getTime();
+      //new file name
+      var newFileName = n + ".jpg";
+      var myFolderApp = "MyAppFolder";
+      window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSys) {      
+        //The folder is created if doesn't exist
+        fileSys.root.getDirectory( myFolderApp,
+                                  {create:true, exclusive: false},
+                                  function(directory) {
+          entry.moveTo(directory, newFileName,  successMove, resOnError);
+        },
+                                  resOnError);
+      },
+                               resOnError);
+}
+
+//Callback function when the file has been moved successfully - inserting the complete path
+function successMove(entry) {
+    //Store imagepath in session for future use
+    // like to store it in database
+    sessionStorage.setItem('imagepath', entry.fullPath);
+}
+
+function resOnError(error) {
+    alert(error.code);
+}
     // Called when a photo is successfully retrieved
     //
     function onPhotoURISuccess(imageURI) {
@@ -62,10 +88,7 @@
       
       ///Prueba de mierda
       
-      
-      
-      
-    }
+      }
     // A button will call this function
     //
     function capturePhoto() {
