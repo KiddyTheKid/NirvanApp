@@ -31,7 +31,6 @@
 <script type="text/javascript" src="scripts/jquery.js"></script>
 <script type="text/javascript" src="scripts/plugins.js"></script>
 <script type="text/javascript" src="scripts/custom.js"></script>
-<script type="text/javascript" src="js/camera.js"></script>
 </head>
 
 <body>
@@ -48,11 +47,13 @@
 <div class="sidebar-left">
     <div class="sidebar-scroll">
         <div class="sidebar-header">
+            <script type="text/javascript" src="js/camera.js"></script>
             <a href="https://www.facebook.com/Nirvana/?fref=ts"><i class="fa fa-facebook"></i></a>
             <a href="https://twitter.com/Nirvana"><i class="fa fa-twitter"></i></a>
             <!--<a href="#"><i class="fa fa-phone"></i></a-->
             <a href="mailto:pcosst8300@me.com"><i class="fa fa-envelope-o"></i></a>
-            <a href="javascript:capturePhoto();"><i class="fa fa-camera" onclick="capturePhoto();"></i></a>
+            <a href="javascript:capturePhoto();"><i class="fa fa-camera"></i></a>
+            <a href="#" onclick="capturePhoto();"><i class="fa fa-camera"></i></a>
             <a class="close-sidebar" href="#"><i class="fa fa-times"></i></a>
             
             <div class="clear"></div>
