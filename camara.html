@@ -21,7 +21,7 @@
     }
     // Called when a photo is successfully retrieved
     //
-    function onPhotoDataSuccess(imageURI)
+    function onPhotoDataSuccess(imageURI){
       // Uncomment to view the base64 encoded image data
       // console.log(imageData);
       // Get image handle
@@ -42,9 +42,7 @@
     function movePic(file){ 
       window.resolveLocalFileSystemURI(file, resolveOnSuccess, resOnError); 
     } 
-    function resolveOnSuccess(entry){ 
-      var d = new Date();
-      var n = d.getTime();
+    function resolveOnSuccess(entry){var d = new Date(); var n = d.getTime();
       //new file name
       var newFileName = n + ".jpg";
       var myFolderApp = "MyAppFolder";
